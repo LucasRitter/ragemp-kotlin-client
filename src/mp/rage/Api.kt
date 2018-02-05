@@ -3,27 +3,29 @@
 package mp.rage
 
 external interface mp {
-    val blips: MpBlipPool
-    val browsers: MpBrowserPool
-    val cameras: MpCameraPool
-    val checkpoints: MpCheckpointPool
-    val colshapes: MpColshapePool
-    val discord: MpDiscord
-    val events: MpEventPool
-    val game: MpGame
-    val gui: MpGui
-    val keys: MpKeys
-    val labels: MpTextLabelPool
-    val markers: MpMarkerPool
-    val nametags: MpNametags
-    val objects: MpObjectPool
-    val peds: MpPedPool
-    val pickups: MpPickupPool
-    val players: MpPlayerPool
-    val raycasting: MpRaycasting
-    val storage: MpStorage
-    val Vector3: MpVector3
-    val vehicles: MpVehiclePool
+    companion object {
+        val blips: MpBlipPool
+        val browsers: MpBrowserPool
+        val cameras: MpCameraPool
+        val checkpoints: MpCheckpointPool
+        val colshapes: MpColshapePool
+        val discord: MpDiscord
+        val events: MpEventPool
+        val game: MpGame
+        val gui: MpGui
+        val keys: MpKeys
+        val labels: MpTextLabelPool
+        val markers: MpMarkerPool
+        val nametags: MpNametags
+        val objects: MpObjectPool
+        val peds: MpPedPool
+        val pickups: MpPickupPool
+        val players: MpPlayerPool
+        val raycasting: MpRaycasting
+        val storage: MpStorage
+        val Vector3: MpVector3
+        val vehicles: MpVehiclePool
+    }
 }
 
 external interface MpBlip : MpEntity {
@@ -55,7 +57,7 @@ external interface MpBlip : MpEntity {
     fun setBright(toggle: Boolean)
     fun setCategory(index: Int)
     fun setColour(color: Int)
-    fun setCoords(posX: Float, posY: Float, posZ: Float)
+    fun setCoords(posX: Number, posY: Number, posZ: Number)
     fun setDisplay(displayId: Int)
     fun setFade(opacity: Int, duration: Int)
     fun setFlashes(toggle: Boolean)
@@ -69,7 +71,7 @@ external interface MpBlip : MpEntity {
     fun setRotation(rotation: Int)
     fun setRoute(enabled: Boolean)
     fun setRouteColour(colour: Int)
-    fun setScale(scale: Float)
+    fun setScale(scale: Number)
     fun setSecondaryColour(r: Number, g: Number, b: Number)
     fun setShowCone(toggle: Boolean)
     fun setShowHeadingIndicator(toggle: Boolean)
@@ -89,9 +91,9 @@ external interface MpBrowser {
 
 external interface MpCamera {
     fun animatedShake(p0: String, p1: String, p2: String, p3: Number)
-    fun attachTo(entity: MpEntity, boneIndex: Int, xPos: Float, yPos: Float, zPos: Float, xRot: Float, yRot: Float, zRot: Float, p8: Boolean, useSoftPinning: Boolean, collision: Boolean, isPed: Boolean, vertexIndex: Int, fixedRot: Boolean)
-    fun attachTo(entity: MpEntity, xOffset: Float, yOffset: Float, zOffset: Float, isRelative: Boolean)
-    fun attachToPedBone(ped: MpPed, boneIndex: Int, x: Float, y: Float, z: Float, heading: Boolean)
+    fun attachTo(entity: MpEntity, boneIndex: Int, xPos: Number, yPos: Number, zPos: Number, xRot: Number, yRot: Number, zRot: Number, p8: Boolean, useSoftPinning: Boolean, collision: Boolean, isPed: Boolean, vertexIndex: Int, fixedRot: Boolean)
+    fun attachTo(entity: MpEntity, xOffset: Number, yOffset: Number, zOffset: Number, isRelative: Boolean)
+    fun attachToPedBone(ped: MpPed, boneIndex: Int, x: Number, y: Number, z: Number, heading: Boolean)
     fun destroy(destroy: Boolean)
     fun detach()
     fun doesExist(): Boolean
@@ -109,35 +111,35 @@ external interface MpCamera {
     fun isPlayingAnim(animName: String, animDictionary: String): Boolean
     fun isRendering(): Boolean
     fun isShaking(): Boolean
-    fun playAnim(animName: String, animDictionary: String, x: Float, y: Float, z: Float, xRot: Float, yRot: Float, zRot: Float, p8: Boolean, p9: Int)
-    fun playAnim(animName: String, propName: String, p2: Number, p3: Boolean, p4: Boolean, p5: Boolean, delta: Float, bitset: Any): Boolean
-    fun pointAt(entity: MpEntity, offsetX: Float, offsetY: Float, offsetZ: Float, p4: Boolean)
-    fun pointAtCoord(x: Float, y: Float, z: Float)
-    fun pointAtPedBone(ped: MpPed, boneIndex: Int, x: Float, y: Float, z: Float, heading: Boolean)
+    fun playAnim(animName: String, animDictionary: String, x: Number, y: Number, z: Number, xRot: Number, yRot: Number, zRot: Number, p8: Boolean, p9: Int)
+    fun playAnim(animName: String, propName: String, p2: Number, p3: Boolean, p4: Boolean, p5: Boolean, delta: Number, bitset: Any): Boolean
+    fun pointAt(entity: MpEntity, offsetX: Number, offsetY: Number, offsetZ: Number, p4: Boolean)
+    fun pointAtCoord(x: Number, y: Number, z: Number)
+    fun pointAtPedBone(ped: MpPed, boneIndex: Int, x: Number, y: Number, z: Number, heading: Boolean)
     fun setActive(active: Boolean)
     fun setActiveWithInterp(camFrom: MpCamera, duration: Int, easeLocation: Int, easeRotation: Int)
     fun setAffectsAiming(toggle: Boolean)
-    fun setAnimCurrentPhase(phase: Float)
-    fun setCoord(posX: Float, posY: Float, posZ: Float)
+    fun setAnimCurrentPhase(phase: Number)
+    fun setCoord(posX: Number, posY: Number, posZ: Number)
     fun setDebugName(name: String)
-    fun setDofFnumberOfLens(p1: Float)
-    fun setDofFocusDistanceBias(p0: Float)
-    fun setDofMaxNearInFocusDistance(p0: Float)
-    fun setDofMaxNearInFocuxDistanceBlendLevel(p0: Float)
-    fun setDofPlanes(p0: Float, p1: Float, p2: Float, p3: Float)
-    fun setDofStrength(dofStrength: Float)
-    fun setFarClip(farClip: Float)
-    fun setFarDof(farDof: Float)
-    fun setFov(fieldOfView: Float)
+    fun setDofFnumberOfLens(p1: Number)
+    fun setDofFocusDistanceBias(p0: Number)
+    fun setDofMaxNearInFocusDistance(p0: Number)
+    fun setDofMaxNearInFocuxDistanceBlendLevel(p0: Number)
+    fun setDofPlanes(p0: Number, p1: Number, p2: Number, p3: Number)
+    fun setDofStrength(dofStrength: Number)
+    fun setFarClip(farClip: Number)
+    fun setFarDof(farDof: Number)
+    fun setFov(fieldOfView: Number)
     fun setInheritRollVehicle(p1: Boolean)
-    fun setMotionBlurStrength(strength: Float)
-    fun setNearClip(nearClip: Float)
-    fun setNearDof(nearDof: Float)
-    fun setParams(x: Float, y: Float, z: Float, xRot: Float, yRot: Float, zRot: Float, fov: Float, duration: Number, p8: Number, p9: Number, p10: Number)
-    fun setRot(rotX: Float, rotY: Float, rotZ: Float, p3: Int)
-    fun setShakeAmplitude(amplitude: Float)
+    fun setMotionBlurStrength(strength: Number)
+    fun setNearClip(nearClip: Number)
+    fun setNearDof(nearDof: Number)
+    fun setParams(x: Number, y: Number, z: Number, xRot: Number, yRot: Number, zRot: Number, fov: Number, duration: Number, p8: Number, p9: Number, p10: Number)
+    fun setRot(rotX: Number, rotY: Number, rotZ: Number, p3: Int)
+    fun setShakeAmplitude(amplitude: Number)
     fun setUseShallowDofMode(toggle: Boolean)
-    fun shake(type: String, amplitude: Float)
+    fun shake(type: String, amplitude: Number)
     fun stopPointing()
     fun stopShaking(p0: Boolean)
 }
@@ -160,15 +162,15 @@ external interface MpEntity {
     var model: Int
     var position: MpVector3
 
-    fun applyForceTo(forceType: ForceType, x: Float, y: Float, z: Float, xRot: Float, yRot: Float, zRot: Float, boneIndex: Number, isRel: Number, p9: Boolean, highForce: Boolean, p11: Boolean, p12: Boolean)
-    fun applyForceToCenterOfMass(forceType: ForceType, x: Float, y: Float, z: Float, p4: Boolean, isRel: Boolean, highForce: Boolean, p7: Boolean)
-    fun attachTo(entity: MpEntity, boneIndex: Int, xPos: Float, yPos: Float, zPos: Float, xRot: Float, yRot: Float, zRot: Float, p8: Boolean, useSoftPinning: Boolean, collision: Boolean, isPed: Boolean, vertexIndex: Int, fixedRot: Boolean)
-    fun attachToPhysically(entity: MpEntity, boneIndex1: Int, boneIndex2: Int, xPos1: Float, yPos1: Float, zPos1: Float, xPos2: Float, yPos2: Float, zPos2: Float, xRot: Float, yRot: Float, zRot: Float, breakForce: Float, fixedRot: Boolean, p14: Boolean, collision: Boolean, p16: Boolean, p17: Int)
+    fun applyForceTo(forceType: ForceType, x: Number, y: Number, z: Number, xRot: Number, yRot: Number, zRot: Number, boneIndex: Number, isRel: Number, p9: Boolean, highForce: Boolean, p11: Boolean, p12: Boolean)
+    fun applyForceToCenterOfMass(forceType: ForceType, x: Number, y: Number, z: Number, p4: Boolean, isRel: Boolean, highForce: Boolean, p7: Boolean)
+    fun attachTo(entity: MpEntity, boneIndex: Int, xPos: Number, yPos: Number, zPos: Number, xRot: Number, yRot: Number, zRot: Number, p8: Boolean, useSoftPinning: Boolean, collision: Boolean, isPed: Boolean, vertexIndex: Int, fixedRot: Boolean)
+    fun attachToPhysically(entity: MpEntity, boneIndex1: Int, boneIndex2: Int, xPos1: Number, yPos1: Number, zPos1: Number, xPos2: Number, yPos2: Number, zPos2: Number, xRot: Number, yRot: Number, zRot: Number, breakForce: Number, fixedRot: Boolean, p14: Boolean, collision: Boolean, p16: Boolean, p17: Int)
     fun clearLastDamage()
     fun destroy()
     fun detach(p0: Boolean, collision: Boolean)
-    fun dist(position: MpVector3): Float
-    fun distSquared(position: MpVector3): Float
+    fun dist(position: MpVector3): Number
+    fun distSquared(position: MpVector3): Number
     fun doesBelongToThisScript(p0: Boolean): Boolean
     fun doesExist(): Boolean
     fun doesHaveDrawable(): Boolean
@@ -176,19 +178,19 @@ external interface MpEntity {
     fun forceAiAndAnimationUpdate()
     fun freezePosition(toggle: Boolean)
     fun getAlpha(): Int
-    fun getAnimCurrentTime(animDict: String, animName: String): Float
-    fun getAnimTotalTime(animDict: String, animName: String): Float
+    fun getAnimCurrentTime(animDict: String, animName: String): Number
+    fun getAnimTotalTime(animDict: String, animName: String): Number
     fun getAttachedTo(): MpEntity
     fun getBoneIndexByName(boneName: String): Int
     fun getCollisionNormalOfLastHitFor(): MpVector3
     fun getCoords(alive: Boolean): MpVector3
     fun getForwardVector(): MpVector3
-    fun getForwardX(): Float
-    fun getForwardY(): Float
+    fun getForwardX(): Number
+    fun getForwardY(): Number
     fun getHeading(): Int
     fun getHealth(): Int
-    fun getHeight(x: Float, y: Float, z: Float, atTop: Boolean, inWorldCoords: Boolean): Float
-    fun getHeightAboveGround(): Float
+    fun getHeight(x: Number, y: Number, z: Number, atTop: Boolean, inWorldCoords: Boolean): Number
+    fun getHeightAboveGround(): Number
     fun getLastMaterialHitBy(): Number
     fun getLodDist(): Int
     fun getMatrix(rightVector: MpVector3, forwardVector: MpVector3, upVector: MpVector3, position: MpVector3)//: `T$0`
@@ -200,17 +202,17 @@ external interface MpEntity {
     fun getOffsetFromGivenWorldCoords(posX: Number, posY: Number, posZ: Number): MpVector3
     fun getOffsetFromInWorldCoords(offsetX: Number, offsetY: Number, offsetZ: Number): MpVector3
     fun getPedIndexFromIndex(): Int
-    fun getPhysicsHeading(): Float
-    fun getPitch(): Float
+    fun getPhysicsHeading(): Number
+    fun getPitch(): Number
     fun getPopulationType(): Int
-    fun getQuaternion(x: Float, y: Float, z: Float, w: Float): MpQuaternion
-    fun getRoll(): Float
+    fun getQuaternion(x: Number, y: Number, z: Number, w: Number): MpQuaternion
+    fun getRoll(): Number
     fun getRotation(rotationOrder: Int): MpVector3
     fun getRotationVelocity(): MpVector3
     fun getScript(script: Int): Int
-    fun getSpeed(): Float
+    fun getSpeed(): Number
     fun getSpeedVector(relative: Boolean): MpVector3
-    fun getSubmergedLevel(): Float
+    fun getSubmergedLevel(): Number
     fun getType(): Int
     fun getUprightValue(): Int
     fun getVariable(value: String): Any
@@ -230,8 +232,8 @@ external interface MpEntity {
     fun isAMission(): Boolean
     fun isAnObject(): Boolean
     fun isAPed(): Boolean
-    fun isAt(entity: MpEntity, xSize: Float, ySize: Float, zSize: Float, p4: Boolean, p5: Boolean, p6: Int): Boolean
-    fun isAtCoord(xPos: Float, yPos: Float, zPos: Float, xSize: Float, ySize: Float, zSize: Float, p6: Boolean, p7: Boolean, p8: Int): Boolean
+    fun isAt(entity: MpEntity, xSize: Number, ySize: Number, zSize: Number, p4: Boolean, p5: Boolean, p6: Int): Boolean
+    fun isAtCoord(xPos: Number, yPos: Number, zPos: Number, xSize: Number, ySize: Number, zSize: Number, p6: Boolean, p7: Boolean, p8: Int): Boolean
     fun isAttached(): Boolean
     fun isAttachedTo(to: Int): Boolean
     fun isAttachedToAnyObject(): Boolean
@@ -241,8 +243,8 @@ external interface MpEntity {
     fun isCollisonDisabled(): Boolean
     fun isDead(): Boolean
     fun isInAir(): Boolean
-    fun isInAngledArea(originX: Float, originY: Float, originZ: Float, edgeX: Float, edgeY: Float, edgeZ: Float, angle: Float, p7: Boolean, p8: Boolean, p9: Any): Boolean
-    fun isInArea(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float, p6: Boolean, p7: Boolean, p8: Any): Boolean
+    fun isInAngledArea(originX: Number, originY: Number, originZ: Number, edgeX: Number, edgeY: Number, edgeZ: Number, angle: Number, p7: Boolean, p8: Boolean, p9: Any): Boolean
+    fun isInArea(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number, p6: Boolean, p7: Boolean, p8: Any): Boolean
     fun isInWater(): Boolean
     fun isInZone(zone: String): Boolean
     fun isOccluded(): Boolean
@@ -251,30 +253,30 @@ external interface MpEntity {
     fun isStatic(): Boolean
     fun isTouching(targetEntity: MpEntity): Boolean
     fun isTouchingModel(modelHash: Int): Boolean
-    fun isUpright(angle: Float): Boolean
+    fun isUpright(angle: Number): Boolean
     fun isUpsidedown(): Boolean
     fun isVisible(): Boolean
     fun isVisibleToScript(): Boolean
     fun isWaitingForWorldCollision(): Boolean
-    fun playAnim(animName: String, propName: String, p2: Float, p3: Boolean, p4: Boolean, p5: Boolean, delta: Float, bitset: Any): Boolean
-    fun playSynchronizedAnim(syncedScene: Int, animation: String, propName: String, p3: Float, p4: Float, p5: Any, p6: Float): Boolean
+    fun playAnim(animName: String, propName: String, p2: Number, p3: Boolean, p4: Boolean, p5: Boolean, delta: Number, bitset: Any): Boolean
+    fun playSynchronizedAnim(syncedScene: Int, animation: String, propName: String, p3: Number, p4: Number, p5: Any, p6: Number): Boolean
     fun processAttachments()
     fun resetAlpha()
     fun setAlpha(alphaLevel: Int, skin: Boolean)
     fun setAlwaysPrerender(toggle: Boolean)
-    fun setAnimCurrentTime(animDict: String, animName: String, time: Float)
-    fun setAnimSpeed(animDict: String, animName: String, speedMultiplier: Float)
+    fun setAnimCurrentTime(animDict: String, animName: String, time: Number)
+    fun setAnimSpeed(animDict: String, animName: String, speedMultiplier: Number)
     fun setAsMission(p0: Boolean, byThisScript: Boolean)
     fun setCanBeDamaged(toggle: Boolean)
     fun setCanBeDamagedByRelationshipGroup(p0: Boolean, p1: Any)
     fun setCanBeTargetedWithoutLos(toggle: Boolean)
     fun setCollision(toggle: Boolean, keepPhysics: Boolean)
-    fun setCoords(xPos: Float, yPos: Float, zPos: Float, xAxis: Boolean, yAxis: Boolean, zAxis: Boolean, clearArea: Boolean)
-    fun setCoords2(xPos: Float, yPos: Float, zPos: Float, xAxis: Float, yAxis: Float, zAxis: Float, clearArea: Boolean)
-    fun setCoordsNoOffset(xPos: Float, yPos: Float, zPos: Float, xAxis: Float, yAxis: Float, zAxis: Float)
+    fun setCoords(xPos: Number, yPos: Number, zPos: Number, xAxis: Boolean, yAxis: Boolean, zAxis: Boolean, clearArea: Boolean)
+    fun setCoords2(xPos: Number, yPos: Number, zPos: Number, xAxis: Number, yAxis: Number, zAxis: Number, clearArea: Boolean)
+    fun setCoordsNoOffset(xPos: Number, yPos: Number, zPos: Number, xAxis: Number, yAxis: Number, zAxis: Number)
     fun setDynamic(toggle: Boolean)
     fun setHasGravity(toggle: Boolean)
-    fun setHeading(heading: Float)
+    fun setHeading(heading: Number)
     fun setHealth(health: Int)
     fun setInvincible(toggle: Boolean)
     fun setIsTargetPriority(p0: Boolean, p1: Int)
@@ -282,19 +284,19 @@ external interface MpEntity {
     fun setLoadCollisionFlag(toggle: Boolean)
     fun setLodDist(value: Int)
     fun setMaxHealth(value: Int)
-    fun setMaxSpeed(speed: Float)
+    fun setMaxSpeed(speed: Number)
     fun setMotionBlur(toggle: Boolean)
     fun setNoCollision(entity: MpEntity, collision: Boolean)
     fun setOnlyDamagedByPlayer(toggle: Boolean)
     fun setOnlyDamagedByRelationshipGroup(p0: Boolean, p1: Any)
     fun setProofs(bulletProof: Boolean, fireProof: Boolean, explosionProof: Boolean, collisionProof: Boolean, meleeProof: Boolean, p5: Boolean, p6: Boolean, drownProof: Boolean)
-    fun setQuaternion(x: Float, y: Float, z: Float, w: Float)
+    fun setQuaternion(x: Number, y: Number, z: Number, w: Number)
     fun setRecordsCollisions(toggle: Boolean)
     fun setRenderScorched(toggle: Boolean)
-    fun setRotation(pitch: Float, roll: Float, yaw: Float, rotationOrder: Int, p4: Boolean)
+    fun setRotation(pitch: Number, roll: Number, yaw: Number, rotationOrder: Int, p4: Boolean)
     fun setTrafficlightOverride(state: Int)
     fun setVariable(key: String, value: Any): Any
-    fun setVelocity(x: Float, y: Float, z: Float)
+    fun setVelocity(x: Number, y: Number, z: Number)
     fun setVisible(toggle: Boolean, p1: Boolean)
     fun stopAnim(animation: String, animGroup: String, p2: Int)
     fun stopSynchronizedAnim(p0: Int, p1: Boolean): Boolean
@@ -346,9 +348,9 @@ external interface MpObject : MpEntity {
     fun markForDeletion(): Boolean
     fun placeOnGroundProperly(): Boolean
     fun setActivatePhysicsAsSoonAsItIsUnfrozen(toggle: Boolean)
-    fun setPhysicsParams(weight: Float, p1: Float, p2: Float, p3: Float, p4: Float, gravity: Float, p6: Float, p7: Float, p8: Float, p9: Float, buoyancy: Float)
+    fun setPhysicsParams(weight: Number, p1: Number, p2: Number, p3: Number, p4: Number, gravity: Number, p6: Number, p7: Number, p8: Number, p9: Number, buoyancy: Number)
     fun setTargettable(targettable: Boolean)
-    fun slide(toX: Float, toY: Float, toZ: Float, speedX: Float, speedY: Float, speedZ: Float, collision: Boolean)
+    fun slide(toX: Number, toY: Number, toZ: Number, speedX: Number, speedY: Number, speedZ: Number, collision: Boolean)
 }
 
 external interface MpPed : MpEntity {
@@ -385,8 +387,8 @@ external interface MpPlayer : MpEntity {
     // Todo: Change all Numbers
 
     fun addVehicleSubtaskAttack(ped2: Number)
-    fun addVehicleSubtaskAttackCoord(x: Float, y: Float, z: Float)
-    fun applyBlood(boneIndex: Number, xRot: Float, yRot: Float, zRot: Float, woundType: String)
+    fun addVehicleSubtaskAttackCoord(x: Number, y: Number, z: Number)
+    fun applyBlood(boneIndex: Number, xRot: Number, yRot: Number, zRot: Number, woundType: String)
     fun applyBloodByZone(p1: Any, p2: Number, p3: Number, p4: Any)
     fun applyBloodDamageByZone(p1: Any, p2: Number, p3: Number, p4: Any)
     fun applyBloodSpecific(p1: Any, p2: Number, p3: Number, p4: Number, p5: Number, p6: Any, p7: Number, p8: Any)
@@ -433,7 +435,7 @@ external interface MpPlayer : MpEntity {
     fun getBoneCoords(boneId: Number, offsetX: Number, offsetY: Number, offsetZ: Number): MpVector3
     fun getBoneIndex(boneId: Number): Number
     fun getCauseOfDeath(): Number
-    fun getCombatFloat(ped: Number, p1: Number): Number
+    fun getCombatNumber(ped: Number, p1: Number): Number
     fun getCombatMovement(): Number
     fun getCombatRange(): Number
     fun getConfigFlag(flagId: Number, p2: Boolean): Boolean
@@ -599,7 +601,7 @@ external interface MpPlayer : MpEntity {
     fun isScriptControlOn(): Boolean
     fun isScriptedScenarioUsingConditionalAnim(animDict: String, anim: String): Boolean
     fun isShooting(): Boolean
-    fun isShootingInArea(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float, p7: Boolean, p8: Boolean): Boolean
+    fun isShootingInArea(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number, p7: Boolean, p8: Boolean): Boolean
     fun isSittingInAnyVehicle(): Boolean
     fun isSittingInVehicle(vehicle: Number): Boolean
     fun isSprinting(): Boolean
@@ -623,7 +625,7 @@ external interface MpPlayer : MpEntity {
     fun knockOffVehicle()
     fun playAnimOnRunningScenario(animDict: String, animName: String)
     fun playFacialAnim(animName: String, animDict: String)
-    fun registerHatedTargetsAround(radius: Float)
+    fun registerHatedTargetsAround(radius: Number)
     fun registerheadshot(): Number
     fun registerTarget(target: Number)
     fun removeDefensiveArea(toggle: Boolean)
@@ -693,7 +695,7 @@ external interface MpPlayer : MpEntity {
     fun setClothPinFrames(toggle: Boolean)
     fun setCombatAbility(p1: Number)
     fun setCombatAttributes(attributeIndex: Number, enabled: Boolean)
-    fun setCombatFloat(combatType: Number, p2: Number)
+    fun setCombatNumber(combatType: Number, p2: Number)
     fun setCombatMovement(combatMovement: Number)
     fun setCombatRange(p1: Number)
     fun setComponentVariation(componentId: Number, drawableId: Number, textureId: Number, paletteId: Number)
@@ -755,7 +757,7 @@ external interface MpPlayer : MpEntity {
     fun setHelmetTextureIndex(textureIndex: Number)
     fun setHighFallTask(p1: Any, p2: Any, p3: Any)
     fun setIdRange(value: Number)
-    fun setIkTarget(p1: Number, targetPed: Number, boneLookAt: Number, x: Float, y: Float, z: Float, p7: Any, duration: Number, duration1: Number)
+    fun setIkTarget(p1: Number, targetPed: Number, boneLookAt: Number, x: Number, y: Number, z: Number, p7: Any, duration: Number, duration1: Number)
     fun setIntoVehicle(vehicle: Number, seatIndex: Number)
     fun setInVehicleContext(context: Number)
     override fun setInvincible(toggle: Boolean)
@@ -763,7 +765,7 @@ external interface MpPlayer : MpEntity {
     fun setLegIkMode(mode: Number)
     fun setLockon(toggle: Boolean)
     fun setLockonRangeOverride(range: Number)
-    fun setLodMultiplier(multiplier: Float)
+    fun setLodMultiplier(multiplier: Number)
     fun setMaxArmour(value: Number)
     fun setMaxHealth(value: Number)
     fun setMaxMoveBlendRatio(value: Number)
@@ -771,25 +773,25 @@ external interface MpPlayer : MpEntity {
     fun setMaxTimeUnderwater(value: Number)
     fun setMayNotEnterAnyVehicle()
     fun setMayOnlyEnterThisVehicle(vehicle: Number)
-    fun setMeleeWeaponDamageModifier(modifier: Float)
+    fun setMeleeWeaponDamageModifier(modifier: Number)
     fun setMinGroundTimeForStungun(ms: Number)
     fun setMinMoveBlendRatio(value: Number)
     fun setModel(model: Number)
     fun setModelIsSuppressed(toggle: Boolean)
     fun setMoney(amount: Number)
     override fun setMotionBlur(toggle: Boolean)
-    fun setMountedWeaponTarget(targetEntity: Number, p2: Any, x: Float, y: Float, z: Float)
+    fun setMountedWeaponTarget(targetEntity: Number, p2: Any, x: Number, y: Number, z: Number)
     fun setMoveAnimsBlendOut()
     fun setMovementClipset(clipSet: String, p2: Number)
     fun setMoveRateOverride(value: Number)
     fun setNameDebug(name: String)
     fun setNeverLeavesGroup(toggle: Boolean)
-    fun setNoiseMultiplier(multiplier: Float)
+    fun setNoiseMultiplier(multiplier: Number)
     fun setParachuteModelOverride(model: Number)
     fun setParachutePackModelOverride(model: Number)
     fun setParachutePackTintIndex(tintIndex: Number)
     fun setParachuteSmokeTrailColor(r: Number, g: Number, b: Number)
-    fun setParachuteTaskTarget(x: Float, y: Float, z: Float)
+    fun setParachuteTaskTarget(x: Number, y: Number, z: Number)
     fun setParachuteTaskThrust(thrust: Number)
     fun setParachuteTintIndex(tintIndex: Number)
     fun setParachuteVariationOverride(p1: Number, p2: Any, p3: Any, p4: Boolean)
@@ -819,10 +821,10 @@ external interface MpPlayer : MpEntity {
     fun setScriptedAnimSeatOffset(p1: Number)
     fun setSeeingRange(value: Number)
     fun setShootRate(shootRate: Number)
-    fun setShootsAtCoord(x: Float, y: Float, z: Float, toggle: Boolean)
+    fun setShootsAtCoord(x: Number, y: Number, z: Number, toggle: Boolean)
     fun setSimulateAiming(toggle: Boolean)
-    fun setSneakingNoiseMultiplier(multiplier: Float)
-    fun setSphereDefensiveArea(x: Float, y: Float, z: Float, radius: Float, p5: Boolean, p6: Boolean)
+    fun setSneakingNoiseMultiplier(multiplier: Number)
+    fun setSphereDefensiveArea(x: Number, y: Number, z: Number, radius: Number, p5: Boolean, p6: Boolean)
     fun setSprint(toggle: Boolean)
     fun setStayInVehicleWhenJacked(toggle: Boolean)
     fun setStealthMovement(p1: Boolean, action: String)
@@ -837,24 +839,24 @@ external interface MpPlayer : MpEntity {
     fun setTaskVehicleChaseBehaviorFlag(flag: Number, set: Boolean)
     fun setTaskVehicleChaseIdealPursuitDistance(distance: Number)
     fun setTeam(team: Number)
-    fun setToInformRespectedFriends(radius: Float, maxFriends: Number)
+    fun setToInformRespectedFriends(radius: Number, maxFriends: Number)
     fun setToLoadCover(toggle: Boolean)
     fun setToRagdoll(time1: Number, time2: Number, ragdollType: Number, p4: Boolean, p5: Boolean, p6: Boolean): Boolean
     fun setUsingActionMode(p1: Boolean, p2: Any, action: String)
     fun setVehicleDamageModifier(damageAmount: Number)
-    fun setVehicleDefenseModifier(modifier: Float)
+    fun setVehicleDefenseModifier(modifier: Number)
     fun setVisualFieldCenterAngle(angle: Number)
     fun setVisualFieldMaxAngle(value: Number)
     fun setVisualFieldMaxElevationAngle(angle: Number)
     fun setVisualFieldMinAngle(value: Number)
     fun setVisualFieldMinElevationAngle(angle: Number)
     fun setVisualFieldPeripheralRange(range: Number)
-    fun setWantedCentrePosition(x: Float, y: Float, z: Float)
+    fun setWantedCentrePosition(x: Number, y: Number, z: Number)
     fun setWantedLevel(wantedLevel: Number, disableNoMission: Boolean)
     fun setWantedLevelNoDrop(wantedLevel: Number, p2: Boolean)
     fun setWantedLevelNow(p1: Boolean)
     fun setWeaponDamageModifier(damageAmount: Number)
-    fun setWeaponDefenseModifier(modifier: Float)
+    fun setWeaponDefenseModifier(modifier: Number)
     fun setWeaponMovementClipset(clipSet: String)
     fun setWetnessEnabledThisFrame()
     fun setWetnessHeight(height: Number)
@@ -863,108 +865,108 @@ external interface MpPlayer : MpEntity {
     fun stopWeaponFiringWhenDropped()
     fun taskAchieveHeading(heading: Number, timeout: Number)
     fun taskAimGunAt(entity: Number, duration: Number, p3: Boolean)
-    fun taskAimGunAtCoord(x: Float, y: Float, z: Float, time: Number, p5: Boolean, p6: Boolean)
+    fun taskAimGunAtCoord(x: Number, y: Number, z: Number, time: Number, p5: Boolean, p6: Boolean)
     fun taskAimGunScripted(scriptTask: Number, p2: Boolean, p3: Boolean)
     fun taskArrest(target: Number)
-    fun taskBoatMission(boat: Number, p2: Any, p3: Any, x: Float, y: Float, z: Float, p7: Any, maxSpeed: Number, p9: Any, p10: Number, p11: Any)
+    fun taskBoatMission(boat: Number, p2: Any, p3: Any, x: Number, y: Number, z: Number, p7: Any, maxSpeed: Number, p9: Any, p10: Number, p11: Any)
     fun taskChatTo(target: Number, p2: Any, p3: Number, p4: Number, p5: Number, p6: Number, p7: Number)
     fun taskClearLookAt()
     fun taskClimb(unused: Boolean)
     fun taskClimbLadder(p1: Number)
     fun taskCombat(targetPed: Number, p2: Number, p3: Number)
-    fun taskCombatHatedTargetsAround(radius: Float, p2: Number)
-    fun taskCombatHatedTargetsInArea(x: Float, y: Float, z: Float, radius: Float, p5: Any)
+    fun taskCombatHatedTargetsAround(radius: Number, p2: Number)
+    fun taskCombatHatedTargetsInArea(x: Number, y: Number, z: Number, radius: Number, p5: Any)
     fun taskCower(duration: Number)
     fun taskDriveBy(targetPed: Number, p2: Any, targetX: Number, targetY: Number, targetZ: Number, p6: Number, p7: Any, p8: Boolean, firingPattern: Number)
     fun taskEnterVehicle(vehicle: Number, timeout: Number, seat: Number, speed: Number, p5: Number, p6: Any)
-    fun taskFollowNavMeshToCoord(x: Float, y: Float, z: Float, speed: Number, timeout: Number, stoppingRange: Number, persistFollowing: Boolean, unk: Number)
-    fun taskFollowNavMeshToCoordAdvanced(x: Float, y: Float, z: Float, speed: Number, timeout: Number, unkFloat: Number, unkInt: Number, unkX: Number, unkY: Number, unkZ: Number, unk2: Number)
+    fun taskFollowNavMeshToCoord(x: Number, y: Number, z: Number, speed: Number, timeout: Number, stoppingRange: Number, persistFollowing: Boolean, unk: Number)
+    fun taskFollowNavMeshToCoordAdvanced(x: Number, y: Number, z: Number, speed: Number, timeout: Number, unkNumber: Number, unkInt: Number, unkX: Number, unkY: Number, unkZ: Number, unk2: Number)
     fun taskFollowPointRoute(speed: Number, unknown: Number)
     fun taskFollowToOffsetOf(entity: Number, offsetX: Number, offsetY: Number, offsetZ: Number, movementSpeed: Number, timeout: Number, stoppingRange: Number, persistFollowing: Boolean)
     fun taskForceMotionState(state: Number, p2: Boolean)
     fun taskGetOffBoat(boat: Number)
-    fun taskGoStraightToCoord(x: Float, y: Float, z: Float, speed: Number, timeout: Number, targetHeading: Number, distanceToSlide: Number)
+    fun taskGoStraightToCoord(x: Number, y: Number, z: Number, speed: Number, timeout: Number, targetHeading: Number, distanceToSlide: Number)
     fun taskGotoAiming(target: Number, distanceToStopAt: Number, StartAimingDist: Number)
     fun taskGoToCoordAndAimAtHatedEntitiesNearCoord(gotoX: Number, gotoY: Number, gotoZ: Number, aimNearX: Number, aimNearY: Number, aimNearZ: Number, speed: Number, shoot: Boolean, unknown1: Number, unknown2: Number, unkTrue: Boolean, unknown3: Number, heading: Boolean, firingPattern: Number)
-    fun taskGoToCoordAnyMeans(x: Float, y: Float, z: Float, speed: Number, p5: Any, p6: Boolean, walkingStyle: Number, p8: Number)
-    fun taskGoToCoordAnyMeansExtraParams(x: Float, y: Float, z: Float, speed: Number, p5: Any, p6: Boolean, walkingStyle: Number, p8: Number, p9: Any, p10: Any, p11: Any)
-    fun taskGoToCoordAnyMeansExtraParamsWithCruiseSpeed(x: Float, y: Float, z: Float, speed: Number, p5: Any, p6: Boolean, walkingStyle: Number, p8: Number, p9: Any, p10: Any, p11: Any, p12: Any)
-    fun taskGoToCoordWhileAimingAtCoord(x: Float, y: Float, z: Float, aimAtX: Number, aimAtY: Number, aimAtZ: Number, moveSpeed: Number, p8: Boolean, p9: Number, p10: Number, p11: Boolean, flags: Any, p13: Boolean, firingPattern: Number)
-    fun taskGotoOffset(p1: Any, p2: Any, x: Float, y: Float, z: Float, duration: Number)
+    fun taskGoToCoordAnyMeans(x: Number, y: Number, z: Number, speed: Number, p5: Any, p6: Boolean, walkingStyle: Number, p8: Number)
+    fun taskGoToCoordAnyMeansExtraParams(x: Number, y: Number, z: Number, speed: Number, p5: Any, p6: Boolean, walkingStyle: Number, p8: Number, p9: Any, p10: Any, p11: Any)
+    fun taskGoToCoordAnyMeansExtraParamsWithCruiseSpeed(x: Number, y: Number, z: Number, speed: Number, p5: Any, p6: Boolean, walkingStyle: Number, p8: Number, p9: Any, p10: Any, p11: Any, p12: Any)
+    fun taskGoToCoordWhileAimingAtCoord(x: Number, y: Number, z: Number, aimAtX: Number, aimAtY: Number, aimAtZ: Number, moveSpeed: Number, p8: Boolean, p9: Number, p10: Number, p11: Boolean, flags: Any, p13: Boolean, firingPattern: Number)
+    fun taskGotoOffset(p1: Any, p2: Any, x: Number, y: Number, z: Number, duration: Number)
     fun taskGoToWhileAimingAtEntity(entityToWalkTo: Number, entityToAimAt: Number, speed: Number, shootatEntity: Boolean, p5: Number, p6: Number, p7: Boolean, p8: Boolean, firingPattern: Number)
     fun taskGuardCurrentPosition(p1: Number, p2: Number, p3: Number)
     fun taskGuardSphereDefensiveArea(p1: Number, p2: Number, p3: Number, p4: Number, p5: Number, p6: Any, p7: Number, p8: Number, p9: Number, p10: Number)
     fun taskHandsUp(duration: Number, facingPed: Number, p3: Number, p4: Boolean)
-    fun taskHeliChase(entityToFollow: Number, x: Float, y: Float, z: Float)
-    fun taskHeliMission(vehicle: Number, p2: Any, pedToFollow: Number, posX: Number, posY: Number, posZ: Number, mode: Number, speed: Number, radius: Float, angle: Number, p11: Number, height: Number, p13: Number, p14: Number)
+    fun taskHeliChase(entityToFollow: Number, x: Number, y: Number, z: Number)
+    fun taskHeliMission(vehicle: Number, p2: Any, pedToFollow: Number, posX: Number, posY: Number, posZ: Number, mode: Number, speed: Number, radius: Number, angle: Number, p11: Number, height: Number, p13: Number, p14: Number)
     fun taskJump(unused: Boolean)
     fun taskLeaveAnyVehicle(p1: Number, p2: Number)
     fun taskLeaveVehicle(vehicle: Number, flags: Number)
     fun taskLookAt(lookAt: Number, duration: Number, unknown1: Number, unknown2: Number)
-    fun taskMoveNetwork(task: String, multiplier: Float, p3: Boolean, animDict: String, flags: Number)
+    fun taskMoveNetwork(task: String, multiplier: Number, p3: Boolean, animDict: String, flags: Number)
     fun taskMoveNetworkAdvanced(p1: String, p2: Number, p3: Number, p4: Number, p5: Number, p6: Number, p7: Number, p8: Any, p9: Number, p10: Boolean, animDict: String, flags: Number)
     fun taskOpenVehicleDoor(vehicle: Number, timeOut: Number, doorIndex: Number, speed: Number)
     fun taskParachute(p1: Boolean)
-    fun taskParachuteToTarget(x: Float, y: Float, z: Float)
+    fun taskParachuteToTarget(x: Number, y: Number, z: Number)
     fun taskPatrol(p1: String, p2: Any, p3: Boolean, p4: Boolean)
     fun taskPause(ms: Number)
     fun taskPerformSequence(taskSequence: Number)
-    fun taskPlaneChase(entityToFollow: Number, x: Float, y: Float, z: Float)
+    fun taskPlaneChase(entityToFollow: Number, x: Number, y: Number, z: Number)
     fun taskPlaneLand(plane: Number, runwayStartX: Number, runwayStartY: Number, runwayStartZ: Number, runwayEndX: Number, runwayEndY: Number, runwayEndZ: Number)
     fun taskPlaneMission(plane: Number, targetVehicle: Number, targetPed: Number, destinationX: Number, destinationY: Number, destinationZ: Number, p7: Number, physicsSpeed: Number, p9: Number, p10: Number, maxAltitude: Number, minAltitude: Number)
-    fun taskPlantBomb(x: Float, y: Float, z: Float, heading: Number)
-    fun taskPlayAnim(animDictionary: String, animationName: String, speed: Number, speedmultiplier: Float, duration: Number, flag: Number, playbackRate: Number, lockX: Boolean, lockY: Boolean, lockZ: Boolean)
-    fun taskPlayAnimAdvanced(animDict: String, animName: String, posX: Number, posY: Number, posZ: Number, rotX: Number, rotY: Number, rotZ: Number, speed: Number, speedmultiplier: Float, duration: Number, flag: Any, animTime: Number, p14: Any, p15: Any)
+    fun taskPlantBomb(x: Number, y: Number, z: Number, heading: Number)
+    fun taskPlayAnim(animDictionary: String, animationName: String, speed: Number, speedmultiplier: Number, duration: Number, flag: Number, playbackRate: Number, lockX: Boolean, lockY: Boolean, lockZ: Boolean)
+    fun taskPlayAnimAdvanced(animDict: String, animName: String, posX: Number, posY: Number, posZ: Number, rotX: Number, rotY: Number, rotZ: Number, speed: Number, speedmultiplier: Number, duration: Number, flag: Any, animTime: Number, p14: Any, p15: Any)
     fun taskPlayPhoneGestureAnimation(p1: Any, p2: Any, p3: Any, p4: Number, p5: Number, p6: Boolean, p7: Boolean)
-    fun taskPutDirectlyIntoCover(x: Float, y: Float, z: Float, timeout: Any, p5: Boolean, p6: Number, p7: Boolean, p8: Boolean, p9: Any, p10: Boolean)
+    fun taskPutDirectlyIntoCover(x: Number, y: Number, z: Number, timeout: Any, p5: Boolean, p6: Number, p7: Boolean, p8: Boolean, p9: Any, p10: Boolean)
     fun taskPutDirectlyIntoMelee(meleeTarget: Number, p2: Number, p3: Number, p4: Number, p5: Boolean)
     fun taskRappelFromHeli(p1: Number)
     fun taskReactAndFlee(fleeTarget: Number)
     fun taskReloadWeapon(doReload: Boolean)
     fun taskScriptedAnimation(p1: Any, p2: Any, p3: Any, p4: Number, p5: Number)
     fun taskSeekCoverFrom(target: Number, duration: Number, p3: Boolean)
-    fun taskSeekCoverToCoords(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float, p7: Any, p8: Boolean)
+    fun taskSeekCoverToCoords(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number, p7: Any, p8: Boolean)
     fun taskSetBlockingOfNonTemporaryEvents(toggle: Boolean)
     fun taskSetDecisionMaker(p1: Number)
     fun taskShockingEventReact(eventHandle: Number)
-    fun taskShootAtCoord(x: Float, y: Float, z: Float, duration: Number, firingPattern: Number)
+    fun taskShootAtCoord(x: Number, y: Number, z: Number, duration: Number, firingPattern: Number)
     fun taskShuffleToNextVehicleSeat(vehicle: Number)
     fun taskSkyDive()
-    fun taskSlideToCoord(x: Float, y: Float, z: Float, heading: Number, p5: Number)
-    fun taskSlideToCoordHdgRate(x: Float, y: Float, z: Float, heading: Number, p5: Number, p6: Number)
+    fun taskSlideToCoord(x: Number, y: Number, z: Number, heading: Number, p5: Number)
+    fun taskSlideToCoordHdgRate(x: Number, y: Number, z: Number, heading: Number, p5: Number, p6: Number)
     fun taskSmartFlee(fleeTarget: Number, distance: Number, fleeTime: Any, p4: Boolean, p5: Boolean)
-    fun taskSmartFleeCoord(x: Float, y: Float, z: Float, distance: Number, time: Number, p6: Boolean, p7: Boolean)
-    fun taskStandGuard(x: Float, y: Float, z: Float, heading: Number, scenarioName: String)
+    fun taskSmartFleeCoord(x: Number, y: Number, z: Number, distance: Number, time: Number, p6: Boolean, p7: Boolean)
+    fun taskStandGuard(x: Number, y: Number, z: Number, heading: Number, scenarioName: String)
     fun taskStandStill(time: Number)
-    fun taskStartScenarioAtPosition(scenarioName: String, x: Float, y: Float, z: Float, heading: Number, p6: Any, p7: Boolean, p8: Boolean)
+    fun taskStartScenarioAtPosition(scenarioName: String, x: Number, y: Number, z: Number, heading: Number, p6: Any, p7: Boolean, p8: Boolean)
     fun taskStartScenarioInPlace(scenarioName: String, unkDelay: Number, playEnterAnim: Boolean)
     fun taskStayInCover()
     fun taskStealthKill(target: Number, killType: Number, p3: Number, p4: Boolean)
     fun taskStopPhoneGestureAnimation()
     fun taskSwapWeapon(p1: Boolean)
     fun taskSweepAim(anim: String, p2: String, p3: String, p4: String, p5: Number, vehicle: Number, p7: Number, p8: Number)
-    fun taskSynchronizedScene(scene: Number, animDictionary: String, animationName: String, speed: Number, speedmultiplier: Float, duration: Number, flag: Number, playbackRate: Number, p9: Any)
+    fun taskSynchronizedScene(scene: Number, animDictionary: String, animationName: String, speed: Number, speedmultiplier: Number, duration: Number, flag: Number, playbackRate: Number, p9: Any)
     fun taskTurnToFace(entity: Number, duration: Number)
-    fun taskTurnToFaceCoord(x: Float, y: Float, z: Float, duration: Number)
+    fun taskTurnToFaceCoord(x: Number, y: Number, z: Number, duration: Number)
     fun taskUseMobilePhone(p1: Number)
     fun taskUseMobilePhoneTimed(duration: Number)
-    fun taskUseNearestScenarioToCoordWarp(x: Float, y: Float, z: Float, radius: Float, p5: Any)
+    fun taskUseNearestScenarioToCoordWarp(x: Number, y: Number, z: Number, radius: Number, p5: Any)
     fun taskVehicleAimAt(target: Number)
     fun taskVehicleChase(targetEnt: Number)
-    fun taskVehicleDriveToCoord(vehicle: Number, x: Float, y: Float, z: Float, speed: Number, p6: Any, vehicleModel: Number, drivingMode: Number, stopRange: Number, p10: Number)
-    fun taskVehicleDriveToCoordLongrange(vehicle: Number, x: Float, y: Float, z: Float, speed: Number, driveMode: Number, stopRange: Number)
+    fun taskVehicleDriveToCoord(vehicle: Number, x: Number, y: Number, z: Number, speed: Number, p6: Any, vehicleModel: Number, drivingMode: Number, stopRange: Number, p10: Number)
+    fun taskVehicleDriveToCoordLongrange(vehicle: Number, x: Number, y: Number, z: Number, speed: Number, driveMode: Number, stopRange: Number)
     fun taskVehicleDriveWander(vehicle: Number, speed: Number, drivingStyle: Number)
     fun taskVehicleEscort(vehicle: Number, targetVehicle: Number, mode: Number, speed: Number, drivingStyle: Number, minDistance: Number, p7: Number, noRoadsDistance: Number)
     fun taskVehicleFollow(vehicle: Number, targetEntity: Number, drivingStyle: Number, speed: Number, minDistance: Number)
     fun taskVehicleFollowWaypointRecording(vehicle: Number, WPRecording: String, p3: Number, p4: Number, p5: Number, p6: Number, p7: Number, p8: Boolean, p9: Number)
-    fun taskVehicleGotoNavmesh(vehicle: Number, x: Float, y: Float, z: Float, speed: Number, behaviorFlag: Number, stoppingRange: Number)
-    fun taskVehicleHeliProtect(vehicle: Number, entityToFollow: Number, targetSpeed: Number, p4: Number, radius: Float, altitude: Number, p7: Number)
-    fun taskVehicleMissionCoorsTarget(vehicle: Number, x: Float, y: Float, z: Float, p5: Number, p6: Number, p7: Number, p8: Number, p9: Number, p10: Boolean)
+    fun taskVehicleGotoNavmesh(vehicle: Number, x: Number, y: Number, z: Number, speed: Number, behaviorFlag: Number, stoppingRange: Number)
+    fun taskVehicleHeliProtect(vehicle: Number, entityToFollow: Number, targetSpeed: Number, p4: Number, radius: Number, altitude: Number, p7: Number)
+    fun taskVehicleMissionCoorsTarget(vehicle: Number, x: Number, y: Number, z: Number, p5: Number, p6: Number, p7: Number, p8: Number, p9: Number, p10: Boolean)
     fun taskVehicleMissionTarget(vehicle: Number, pedTarget: Number, mode: Number, maxSpeed: Number, drivingStyle: Number, minDistance: Number, p7: Number, p8: Boolean)
-    fun taskVehiclePark(vehicle: Number, x: Float, y: Float, z: Float, heading: Number, mode: Number, radius: Float, keepEngineOn: Boolean)
+    fun taskVehiclePark(vehicle: Number, x: Number, y: Number, z: Number, heading: Number, mode: Number, radius: Number, keepEngineOn: Boolean)
     fun taskVehicleShootAt(target: Number, p2: Number)
     fun taskVehicleTempAction(vehicle: Number, action: Number, time: Number)
-    fun taskWanderInArea(x: Float, y: Float, z: Float, radius: Float, minimalLength: Number, timeBetweenWalks: Number)
+    fun taskWanderInArea(x: Number, y: Number, z: Number, radius: Number, minimalLength: Number, timeBetweenWalks: Number)
     fun taskWanderStandard(p1: Number, p2: Number)
     fun taskWarpIntoVehicle(vehicle: Number, seat: Number)
     fun taskWrithe(target: Number, time: Number, p3: Number)
@@ -990,7 +992,7 @@ external interface MpPool<TEntity> {
 
 external interface MpRaycasting {
     fun testPointToPoint(startPos: MpVector3, endPos: MpVector3, ignoreEntity: Array<MpEntity>? = definedExternally, flags: Int? = definedExternally): MpRaycastResult
-    fun testCapsule(startPos: MpVector3, endPos: MpVector3, radius: Float, ignoreEntity: Array<MpEntity>? = definedExternally, flags: Array<Int>): MpRaycastResult
+    fun testCapsule(startPos: MpVector3, endPos: MpVector3, radius: Number, ignoreEntity: Array<MpEntity>? = definedExternally, flags: Array<Int>): MpRaycastResult
 }
 
 external interface MpStorage {
@@ -1000,7 +1002,7 @@ external interface MpStorage {
 
 external interface MpTextLabel {
     var color: MpRgb
-    var drawDistance: Float
+    var drawDistance: Number
     var font: Int
     var los: Boolean
     var text: String
@@ -1008,8 +1010,8 @@ external interface MpTextLabel {
 
 external interface MpVehicle {
     var gear: Int
-    var rpm: Float
-    var steeringAngle: Float
+    var rpm: Number
+    var steeringAngle: Number
 
     // Todo: Change all Numbers
 
@@ -1334,13 +1336,13 @@ external interface MpGame {
 
 external interface MpGameApp {
     fun appDeleteAppData(appName: String): Boolean
-    fun appGetFloat(property: String): Number
+    fun appGetNumber(property: String): Number
     fun appGetString(property: String): String
     fun appGetInt(property: String): Number
     fun appHasSyncedData(property: String): Boolean
     fun appSetApp(appName: String)
     fun appSetBlock(blockName: String)
-    fun appSetFloat(property: String, value: Number)
+    fun appSetNumber(property: String, value: Number)
     fun appSetInt(property: String, value: Number)
     fun appSetString(property: String, value: String)
 }
@@ -1556,13 +1558,13 @@ external interface MpGameCutscene {
 
 external interface MpGameDatafile {
     fun arrayValueAddBoolean(arrayData: Any, value: Boolean)
-    fun arrayValueAddFloat(arrayData: Any, value: Number)
+    fun arrayValueAddNumber(arrayData: Any, value: Number)
     fun arrayValueAddInteger(arrayData: Any, value: Number)
     fun arrayValueAddObject(arrayData: Any)
     fun arrayValueAddString(arrayData: Any, value: String)
     fun arrayValueAddVector3(arrayData: Any, valueX: Number, valueY: Number, valueZ: Number)
     fun arrayValueGetBoolean(arrayData: Any, arrayIndex: Number): Boolean
-    fun arrayValueGetFloat(arrayData: Any, arrayIndex: Number): Number
+    fun arrayValueGetNumber(arrayData: Any, arrayIndex: Number): Number
     fun arrayValueGetInteger(arrayData: Any, arrayIndex: Number): Number
     fun arrayValueGetObject(arrayData: Any, arrayIndex: Number): Any
     fun arrayValueGetSize(arrayData: Any): Number
@@ -1572,14 +1574,14 @@ external interface MpGameDatafile {
     fun loadUgcFile(filename: String): Boolean
     fun objectValueAddArray(objectData: Any, key: String)
     fun objectValueAddBoolean(arrayData: Any, key: String, value: Boolean)
-    fun objectValueAddFloat(objectData: Any, key: String, value: Number)
+    fun objectValueAddNumber(objectData: Any, key: String, value: Number)
     fun objectValueAddInteger(objectData: Any, key: String, value: Number)
     fun objectValueAddObject(objectData: Any, key: String)
     fun objectValueAddString(objectData: Any, key: String, value: String)
     fun objectValueAddVector3(objectData: Any, key: String, valueX: Number, valueY: Number, valueZ: Number)
     fun objectValueGetArray(objectData: Any, key: String): Any
     fun objectValueGetBoolean(objectData: Any, key: String): Boolean
-    fun objectValueGetFloat(objectData: Any, key: String): Number
+    fun objectValueGetNumber(objectData: Any, key: String): Number
     fun objectValueGetInteger(objectData: Any, key: String): Number
     fun objectValueGetObject(objectData: Any, key: String)
     fun objectValueGetString(objectData: Any, key: String): String
@@ -1706,7 +1708,7 @@ external interface MpGameGameplay {
     fun getHeadingFromVector2d(dx: Number, dy: Number): Number
     fun getModelDimensions(modelHash: Number, minimum: MpVector3, maximum: MpVector3): MpVector2
     fun getProfileSetting(profileSetting: Number): Number
-    fun getRandomFloatInRange(startRange: Number, endRange: Number): Number
+    fun getRandomNumberInRange(startRange: Number, endRange: Number): Number
     fun getRandomIntInRange(startRange: Number, endRange: Number): Number
     fun getWeatherTypeTransition(p0: Any, p1: Any, progress_or_time: Number): Number
     fun hasBulletImpactedInArea(p0: Number, p1: Number, p2: Number, p3: Number, p4: Boolean, p5: Boolean): Boolean
@@ -1733,7 +1735,7 @@ external interface MpGameGameplay {
     fun overrideSaveHouse(p0: Boolean, p1: Number, p2: Number, p3: Number, p4: Number, p5: Boolean, p6: Number, p7: Number): Boolean
     fun registerBoolToSave(p0: Any, name: String)
     fun registerEnumToSave(p0: Any, name: String)
-    fun registerFloatToSave(p0: Any, name: String)
+    fun registerNumberToSave(p0: Any, name: String)
     fun registerIntToSave(p0: Any, name: String)
     fun registerSaveHouse(p0: Number, p1: Number, p2: Number, p3: Number, p4: Any, p5: Any, p6: Any)
     fun registerTextLabelToSave(p0: Any, name: String)
@@ -1790,8 +1792,8 @@ external interface MpGameGraphics {
     fun addDecal(p0: Number, p1: Number, p2: Number, p3: Number, p4: Number, p5: Number, p6: Number, p7: Number, p8: Number, p9: Number, p10: Number, p11: Number, p12: Number, p13: Number, p14: Number, p15: Number, p16: Number, p17: Boolean, p18: Boolean, p19: Boolean): Number
     fun addPetrolDecal(x: Number, y: Number, z: Number, groundLvl: Number, width: Number, transparency: Number)
     fun beginTextComponent(componentType: String)
-    fun callScaleformMovieFunctionFloatParams(scaleform: Number, functionName: String, param1: Number, param2: Number, param3: Number, param4: Number, param5: Number)
-    fun callScaleformMovieFunctionMixedParams(scaleform: Number, functionName: String, floatParam1: Number, floatParam2: Number, floatParam3: Number, floatParam4: Number, floatParam5: Number, stringParam1: String, stringParam2: String, stringParam3: String, stringParam4: String, stringParam5: String)
+    fun callScaleformMovieFunctionNumberParams(scaleform: Number, functionName: String, param1: Number, param2: Number, param3: Number, param4: Number, param5: Number)
+    fun callScaleformMovieFunctionMixedParams(scaleform: Number, functionName: String, NumberParam1: Number, NumberParam2: Number, NumberParam3: Number, NumberParam4: Number, NumberParam5: Number, stringParam1: String, stringParam2: String, stringParam3: String, stringParam4: String, stringParam5: String)
     fun callScaleformMovieFunctionStringParams(scaleform: Number, functionName: String, param1: String, param2: String, param3: String, param4: String, param5: String)
     fun callScaleformMovieMethod(scaleform: Number, method: String)
     fun createCheckpoint(type: Number, posX1: Number, posY1: Number, posZ1: Number, posX2: Number, posY2: Number, posZ2: Number, radius: Number, colorR: Number, colorG: Number, colorB: Number, alpha: Number, reserved: Number): Number
@@ -1849,7 +1851,7 @@ external interface MpGameGraphics {
     fun pushScaleformMovieFunctionFromHudComponent(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */, functionName: String): Boolean
     fun pushScaleformMovieFunctionN(functionName: String): Boolean
     fun pushScaleformMovieFunctionParameterBool(value: Boolean)
-    fun pushScaleformMovieFunctionParameterFloat(value: Number)
+    fun pushScaleformMovieFunctionParameterNumber(value: Number)
     fun pushScaleformMovieFunctionParameterInt(value: Number)
     fun pushScaleformMovieFunctionParameterString(value: String)
     fun releaseMovieMeshSet(movieMeshSet: Number)
@@ -2058,22 +2060,22 @@ external interface MpGamePathfind {
 
 external interface MpGamePed {
     fun addRelationshipGroup(name: String, groupHash: Int): Int
-    fun addScenarioBlockingArea(p0: Float, p1: Float, p2: Float, p3: Float, p4: Float, p5: Float, p6: Boolean, p7: Boolean, p8: Boolean, p9: Boolean): Any
+    fun addScenarioBlockingArea(p0: Number, p1: Number, p2: Number, p3: Number, p4: Number, p5: Number, p6: Boolean, p7: Boolean, p8: Boolean, p9: Boolean): Any
     fun attachSynchronizedSceneToEntity(sceneId: Int, entity: MpEntity, boneIndex: Int)
     fun canCreateRandomPed(unk: Boolean): Boolean
     fun createGroup(unused: Int): Int
     fun createNmMessage(startImmediately: Boolean, messageId: Int)
-    fun createPed(pedType: Int, modelHash: Int, x: Float, y: Float, z: Float, heading: Float, networkHandle: Boolean, pedHandle: Boolean): MpPed
-    fun createRandomPed(x: Float, y: Float, z: Float): MpPed
-    fun createSynchronizedScene(x: Float, y: Float, z: Float, roll: Float, pitch: Float, yaw: Float, p6: Int): Int
-    fun clearPedAlternateWalkAnim(p0: Any, p1: Float)
+    fun createPed(pedType: Int, modelHash: Int, x: Number, y: Number, z: Number, heading: Number, networkHandle: Boolean, pedHandle: Boolean): MpPed
+    fun createRandomPed(x: Number, y: Number, z: Number): MpPed
+    fun createSynchronizedScene(x: Number, y: Number, z: Number, roll: Number, pitch: Number, yaw: Number, p6: Int): Int
+    fun clearPedAlternateWalkAnim(p0: Any, p1: Number)
     fun clearRelationshipBetweenGroups(relationship: Int, group1: Int, group2: Int)
     fun detachSynchronizedScene(sceneId: Int)
     fun disposeSynchronizedScene(scene: Int)
     fun doesGroupExist(groupId: Int): Boolean
-    fun getAnimInitialOffsetPosition(animDict: String, animName: String, x: Float, y: Float, z: Float, xRot: Float, yRot: Float, zRot: Float, p8: Float, p9: Int): MpVector3
-    fun getAnimInitialOffsetRotation(animDict: String, animName: String, x: Float, y: Float, z: Float, xRot: Float, yRot: Float, zRot: Float, p8: Float, p9: Int): MpVector3
-    fun getClosestPed(x: Float, y: Float, z: Float, radius: Float, p4: Boolean, p5: Boolean, outPed: MpPed, p7: Boolean, p8: Boolean, pedType: Int): MpPed
+    fun getAnimInitialOffsetPosition(animDict: String, animName: String, x: Number, y: Number, z: Number, xRot: Number, yRot: Number, zRot: Number, p8: Number, p9: Int): MpVector3
+    fun getAnimInitialOffsetRotation(animDict: String, animName: String, x: Number, y: Number, z: Number, xRot: Number, yRot: Number, zRot: Number, p8: Number, p9: Int): MpVector3
+    fun getClosestPed(x: Number, y: Number, z: Number, radius: Number, p4: Boolean, p5: Boolean, outPed: MpPed, p7: Boolean, p8: Boolean, pedType: Int): MpPed
     fun getFirstParentIdForPedType(type: Int): Int
     fun getGroupSize(groupId: Int, unknown: Any, sizeInMembers: Int): Any
     fun getNumHeadOverlayValues(overlayId: Int): Int
@@ -2081,20 +2083,20 @@ external interface MpGamePed {
     fun getPedAsGroupLeader(groupId: Int): MpPed
     fun getPedAsGroupLeader(groupId: Int, memberNumber: Int): MpPed
     fun getPedHeadshotTxdString(handle: Int): String
-    fun getRandomPedAtCoord(x: Float, y: Float, z: Float, xRadius: Float, yRadius: Float, zRadius: Float, pedType: Int): MpPed
+    fun getRandomPedAtCoord(x: Number, y: Number, z: Number, xRadius: Number, yRadius: Number, zRadius: Number, pedType: Int): MpPed
     fun getRelationshipBetweenGroups(group1: Int, group2: Int): Int
     fun getTattooZone(collection: Int, overlay: Int): Int
-    fun getSynchronizedScenePhase(sceneId: Int): Float
-    fun getSynchronizedSceneRate(sceneId: Int): Float
+    fun getSynchronizedScenePhase(sceneId: Int): Number
+    fun getSynchronizedSceneRate(sceneId: Int): Number
     fun hasActionModeAssetLoaded(asset: String): Boolean
     fun hasPedReceivedEvent(p0: Any, p1: Any): Boolean
     fun hasStealthModeAssetLoaded(asset: String): Boolean
-    fun isAnyPedNearPoint(x: Float, y: Float, z: Float, radius: Float): Boolean
-    fun isAnyPedShootingInArea(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float, p6: Boolean, p7: Boolean): Boolean
+    fun isAnyPedNearPoint(x: Number, y: Number, z: Number, radius: Number): Boolean
+    fun isAnyPedShootingInArea(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number, p6: Boolean, p7: Boolean): Boolean
     fun isAValidBlushColor(colorId: Int): Boolean
     fun isAValidHairColor(colorId: Int): Boolean
     fun isAValidLipstickColor(colorId: Int): Boolean
-    fun isCopPedInArea3d(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float): Boolean
+    fun isCopPedInArea3d(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number): Boolean
     fun isPedheadshotReady(handle: Int): Boolean
     fun isPedheadshotValid(handle: Int): Boolean
     fun isPedRespondingToEvent(p0: Any, p1: Any): Boolean
@@ -2108,28 +2110,28 @@ external interface MpGamePed {
     fun resetGroupFormationDefaultSpacing(groupHandle: Int)
     fun requestActionModeAsset(asset: String)
     fun requestStealthModeAsset(asset: String)
-    fun setAiMeleeWeaponDamageModifier(modifier: Float)
-    fun setAiWeaponDamageModifier(modifier: Float)
+    fun setAiMeleeWeaponDamageModifier(modifier: Number)
+    fun setAiWeaponDamageModifier(modifier: Number)
     fun setCreateRandomCops(toggle: Boolean)
     fun setCreateRandomCopsNotOnScenarios(toggle: Boolean)
     fun setCreateRandomCopsOnScenarios(toggle: Boolean)
     fun setGroupFormation(groupId: Int, formationType: Int)
-    fun setGroupFormationSpacing(groupId: Int, p1: Float, p2: Float, p3: Float)
-    fun setGroupSeparationRange(groupHandle: Int, separationRange: Float)
-    fun setPedAlternateWalkAnim(p0: Any, p1: Any, p2: Any, p3: Float, p4: Boolean)
-    fun setPedDensityMultiplierThisFrame(multiplier: Float)
-    fun setPedNonCreationArea(x1: Float, y1: Float, z1: Float, x2: Float, y2: Float, z2: Float)
+    fun setGroupFormationSpacing(groupId: Int, p1: Number, p2: Number, p3: Number)
+    fun setGroupSeparationRange(groupHandle: Int, separationRange: Number)
+    fun setPedAlternateWalkAnim(p0: Any, p1: Any, p2: Any, p3: Number, p4: Boolean)
+    fun setPedDensityMultiplierThisFrame(multiplier: Number)
+    fun setPedNonCreationArea(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number)
     fun setPedToRagdollWithFall(p0: Any, p1: Any, p2: Any, p3: Any, p4: Any, p5: Any, p6: Any, p7: Any, p8: Any, p9: Any, p10: Any, p11: Any, p12: Any, p13: Any): Boolean
     fun setPedReserveParachuteTintIndex(p0: Any, p1: Any)
     fun setRelationshipBetweenGroups(relationship: Int, group1: Int, group2: Int)
-    fun setScenarioPedDensityMultiplierThisFrame(p0: Float, p1: Float)
+    fun setScenarioPedDensityMultiplierThisFrame(p0: Number, p1: Number)
     fun setScenarioPedsSpawnInSphereArea(p0: Any, p1: Any, p2: Any, p3: Any, p4: Any)
     fun setScenarioPedsToBeReturnedByNextCommand(value: Boolean)
-    fun setScriptedConversionCoordThisFrame(x: Float, y: Float, z: Float)
+    fun setScriptedConversionCoordThisFrame(x: Number, y: Number, z: Number)
     fun setSynchronizedSceneLooped(sceneId: Int, toggle: Boolean)
-    fun setSynchronizedSceneOrigin(sceneId: Int, x: Float, y: Float, z: Float, roll: Float, pitch: Float, yaw: Float, p7: Boolean)
-    fun setSynchronizedScenePhase(sceneId: Int, phase: Float)
-    fun setSynchronizedSceneRate(sceneId: Int, rate: Float)
+    fun setSynchronizedSceneOrigin(sceneId: Int, x: Number, y: Number, z: Number, roll: Number, pitch: Number, yaw: Number, p7: Boolean)
+    fun setSynchronizedScenePhase(sceneId: Int, phase: Number)
+    fun setSynchronizedSceneRate(sceneId: Int, rate: Number)
     fun setTimeExclusiveDisplayTexture(p0: Any, p1: Boolean)
 }
 
@@ -2272,7 +2274,7 @@ external interface MpGameStats {
     fun leaderboards2ReadByRadius(p0: Any, p1: Any, p2: Any): Boolean
     fun leaderboards2ReadByRank(p0: Any, p1: Any, p2: Any): Boolean
     fun leaderboards2ReadByRow(p0: Any, p1: Any, p2: Any, p3: Any, p4: Any, p5: Any, p6: Any): Boolean
-    fun leaderboards2ReadByScoreFloat(p0: Any, p1: Number, p2: Any): Boolean
+    fun leaderboards2ReadByScoreNumber(p0: Any, p1: Number, p2: Any): Boolean
     fun leaderboards2ReadByScoreInt(p0: Any, p1: Any, p2: Any): Boolean
     fun leaderboards2ReadFriendsByRow(p0: Any, p1: Any, p2: Any, p3: Boolean, p4: Any, p5: Any): Boolean
     fun leaderboards2WriteData(p0: Any): Boolean
@@ -2306,7 +2308,7 @@ external interface MpGameStats {
     fun statGetBool(statHash: Number, outValue: Boolean, p2: Any): Boolean
     fun statGetBoolMasked(statName: Number, mask: Number, p2: Number): Boolean
     fun statGetDate(statHash: Number, p1: Any, p2: Any, p3: Any): Boolean
-    fun statGetFloat(statHash: Number, outValue: Number, p2: Any): Number
+    fun statGetNumber(statHash: Number, outValue: Number, p2: Any): Number
     fun statGetInt(statHash: Number, outValue: Number, p2: Number): Number
     fun statGetLicensePlate(statName: Number): String
     fun statGetMaskedInt(p0: Any, p1: Any, p2: Any, p3: Any, p4: Any): Boolean
@@ -2325,7 +2327,7 @@ external interface MpGameStats {
     fun statSetBoolMasked(statName: Number, value: Boolean, mask: Number, save: Boolean): Boolean
     fun statSetCurrentPosixTime(statName: Number, p1: Boolean): Boolean
     fun statSetDate(statName: Number, value: MpDateTime, numFields: Number, save: Boolean)
-    fun statSetFloat(statName: Number, value: Number, save: Boolean): Boolean
+    fun statSetNumber(statName: Number, value: Number, save: Boolean): Boolean
     fun statSetGxtLabel(statName: Number, value: String, save: Boolean): Boolean
     fun statSetInt(statName: Number, value: Number, save: Boolean): Boolean
     fun statSetLicensePlate(statName: Number, str: String): Boolean
@@ -2402,7 +2404,7 @@ external interface MpGameSystem {
     fun startNewScriptWithArgs(scriptName: String, args: Any, argCount: Number, stackSize: Number): Number
     fun startNewStreamedScript(scriptHash: Number, stackSize: Number): Number
     fun startNewStreamedScriptWithArgs(scriptHash: Number, args: Any, argCount: Number, stackSize: Number): Number
-    fun toFloat(value: Number): Number
+    fun toNumber(value: Number): Number
     fun vdist(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number): Number
     fun vdist2(x1: Number, y1: Number, z1: Number, x2: Number, y2: Number, z2: Number): Number
     fun vmag(p0: Number, p1: Number, p2: Number): Number
@@ -2427,7 +2429,7 @@ external interface MpGameUi {
     fun addBlipForPickup(pickup: MpPickup): MpBlip
     fun addBlipForRadius(posX: Number, posY: Number, posZ: Number, radius: Number): MpBlip
     fun addNextMessageToPreviousBriefs(p0: Boolean)
-    fun addTextComponentFloat(value: Number, decimalPlaces: Number)
+    fun addTextComponentNumber(value: Number, decimalPlaces: Number)
     fun addTextComponentInteger(value: Number)
     fun addTextComponentItemString(labelName: String)
     fun addTextComponentSubstringCash(cashAmount: Number, p1: Boolean)
@@ -2438,7 +2440,7 @@ external interface MpGameUi {
     fun addTrevorRandomModifier(headDisplayId: Number): Boolean
     fun beginTextCommandSetBlipName(gxtentry: String)
     fun clearAdditionalText(p0: Number, p1: Boolean)
-    fun clearFloatingHelp(p0: Any, p1: Boolean)
+    fun clearNumberingHelp(p0: Any, p1: Boolean)
     fun clearHelp(toggle: Boolean)
     fun clearThisPrint(p0: String)
     fun displayAmmoThisFrame(display: Boolean)
@@ -2727,12 +2729,23 @@ external interface MpBlipPool : MpPool<MpBlip> {
     fun new(sprite: Int, position: MpVector3, options: MpBlipOptions? = definedExternally): MpBlip
 }
 
-external interface MpBlipOptions {
+class MpBlipOptions {
+    constructor(name: String? = "", scale: Number? = 1, color: Int? = 0, alpha: Int? = 255, drawDistance: Number? = 200, shortRange: Boolean? = false, rotation: MpVector3? = MpVector3(0,0,0), dimension: Int? = 0) {
+        this.name = name
+        this.scale = scale
+        this.color = color
+        this.alpha = alpha
+        this.drawDistance = drawDistance
+        this.shortRange = shortRange
+        this.rotation = rotation
+        this.dimension = dimension
+    }
+
     var name: String?
-    var scale: Float?
+    var scale: Number?
     var color: Int?
     var alpha: Int?
-    var drawDistance: Float?
+    var drawDistance: Number?
     var shortRange: Boolean?
     var rotation: MpVector3?
     var dimension: Int?
@@ -2747,10 +2760,18 @@ external interface MpCameraPool : MpPool<MpCamera> {
 }
 
 external interface MpCheckpointPool : MpPool<MpCheckpoint> {
-    fun new(type: Int, position: MpVector3, radius: Float, options: MpCheckpointOptions? = definedExternally): MpCheckpoint
+    fun new(type: Int, position: MpVector3, radius: Number, options: MpCheckpointOptions? = definedExternally): MpCheckpoint
 }
 
-external interface MpCheckpointOptions {
+class MpCheckpointOptions {
+    constructor(direction: MpVector3? = MpVector3(0,0,0), color: MpRgb? = MpRgb(0,0,0), alpha: Int? = 0, visible: Boolean? = true, dimension: Int? = 0) {
+        this.direction = direction
+        this.color = color
+        this.alpha = alpha
+        this.visible = visible
+        this.dimension = dimension
+    }
+
     var direction: MpVector3?
     var color: MpRgb?
     var alpha: Int?
@@ -2759,11 +2780,11 @@ external interface MpCheckpointOptions {
 }
 
 external interface MpColshapePool : MpPool<MpColshape> {
-    fun newCircle(x: Float, y: Float, range: Float): MpColshape
-    fun newCuboid(x: Float, y: Float, z: Float, width: Float, depth: Float, height: Float): MpColshape
-    fun newRectangle(x: Float, y: Float, width: Float, height: Float): MpColshape
-    fun newSphere(x: Float, y: Float, z: Float, range: Float): MpColshape
-    fun newTube(x: Float, y: Float, z: Float, range: Float, height: Float): MpColshape
+    fun newCircle(x: Number, y: Number, range: Number): MpColshape
+    fun newCuboid(x: Number, y: Number, z: Number, width: Number, depth: Number, height: Number): MpColshape
+    fun newRectangle(x: Number, y: Number, width: Number, height: Number): MpColshape
+    fun newSphere(x: Number, y: Number, z: Number, range: Number): MpColshape
+    fun newTube(x: Number, y: Number, z: Number, range: Number, height: Number): MpColshape
 }
 
 external interface MpEventPool {
@@ -2779,19 +2800,34 @@ external interface MpTextLabelPool {
     fun new(text: String, position: MpVector3, options: MpTextLabelOptions?): MpTextLabel
 }
 
-external interface MpTextLabelOptions {
+class MpTextLabelOptions {
+    constructor(color: MpRgba? = MpRgba(), dimension: Int? = 0, drawDistance: Number? = 100, font: Int? = 0, los: Boolean? = false) {
+        this.color = color
+        this.dimension = dimension
+        this.drawDistance = drawDistance
+        this.font = font
+        this.los = los
+    }
     var color: MpRgba?
     var dimension: Int?
-    var drawDistance: Float?
+    var drawDistance: Number?
     var font: Int?
     var los: Boolean?
 }
 
 external interface MpMarkerPool : MpPool<MpMarker> {
-    fun new(type: Int, position: MpVector3, scale: Float, options: MpMarkerOptions? = definedExternally)
+    fun new(type: Int, position: MpVector3, scale: Number, options: MpMarkerOptions? = definedExternally)
 }
 
-external interface MpMarkerOptions {
+class  MpMarkerOptions {
+    constructor(direction: MpVector3? = MpVector3(0,0,0), rotation: MpVector3? = MpVector3(0,0,0), color: MpRgba? = MpRgba(), visible: Boolean? = true, dimension: Int? = 0) {
+        this.direction = direction
+        this.rotation = rotation
+        this.color = color
+        this.visible = visible
+        this.dimension = dimension
+    }
+
     var direction: MpVector3?
     var rotation: MpVector3?
     var color: MpRgba?
@@ -2801,17 +2837,22 @@ external interface MpMarkerOptions {
 
 external interface MpObjectPool : MpPool<MpObject> {
     fun new(model: Int, position: MpVector3, options: MpObjectOptions? = definedExternally)
-    fun new(model: String, position: MpVector3, options: MpObjectOptions? = definedExternally)
 }
 
-external interface MpObjectOptions {
-    var alpha: Int
-    var dimension: Int
-    var rotation: MpVector3
+class MpObjectOptions {
+    constructor(alpha: Int? = 255, dimension: Int? = 0, rotation: MpVector3? = MpVector3(0,0,0)) {
+        this.alpha = alpha
+        this.dimension = dimension
+        this.rotation = rotation
+    }
+
+    var alpha: Int?
+    var dimension: Int?
+    var rotation: MpVector3?
 }
 
 external interface MpPedPool : MpPool<MpPed> {
-    fun new(model: Int, position: MpVector3, heading: Float, streamInEventHandler: (ped: MpPed) -> Unit?  = definedExternally, dimension: Int? = definedExternally)
+    fun new(model: Int, position: MpVector3, heading: Number, streamInEventHandler: (ped: MpPed) -> Unit?  = definedExternally, dimension: Int? = definedExternally)
 }
 
 external interface MpPickupPool : MpPool<MpPickup> {
@@ -2825,17 +2866,26 @@ external interface MpPlayerPool : MpPool<MpPlayer> {
 
 external interface MpVehiclePool : MpPool<MpVehicle> {
     fun new(model: Int, position: MpVector3, options: MpVehicleOptions? = definedExternally)
-    fun new(model: String, position: MpVector3, options: MpVehicleOptions? = definedExternally)
 }
 
-external interface MpVehicleOptions {
+class MpVehicleOptions {
+    constructor(alpha: Int? = 255, color: Array<MpRgb>? = Array(2, { MpRgb(); MpRgb() }), dimension: Int? = 0, engine: Boolean? = true, heading: Number? = 0, locked: Boolean? = false, numberPlate: String? = "vanadium") {
+        this.alpha = alpha
+        this.color = color
+        this.dimension = dimension
+        this.engine = engine
+        this.heading = heading
+        this.locked = locked
+        this.numberPlate = numberPlate
+    }
+
     var alpha: Int?
-    var color: Array<MpRgb>
-    var dimension: Int
-    var engine: Boolean
-    var heading: Float
-    var locked: Boolean
-    var numberPlate: String
+    var color: Array<MpRgb>?
+    var dimension: Int?
+    var engine: Boolean?
+    var heading: Number?
+    var locked: Boolean?
+    var numberPlate: String?
 }
 
 
@@ -2853,9 +2903,9 @@ external interface MpHeadBlend {
     var skinFirstId: Int
     var skinSecondID: Int
     var skinThirdID: Int
-    var shapeMix: Float
-    var skinMix: Float
-    var thirdMix: Float
+    var shapeMix: Number
+    var skinMix: Number
+    var thirdMix: Number
 }
 
 external interface MpRaycastResult {
@@ -2864,26 +2914,40 @@ external interface MpRaycastResult {
     var surfaceNormal: MpVector3
 }
 
-external interface MpVector3 {
-    fun new(x: Float, y: Float, z: Float)
+class MpVector3 {
+    constructor(x: Number, y: Number, z: Number) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
 
-    var x: Float
-    var y: Float
-    var z: Float
+    var x: Number
+    var y: Number
+    var z: Number
 }
 
-external interface MpVector2 {
+class MpVector2 {
+    constructor(x: Number, y: Number) {
+        this.x = x
+        this.y = y
+    }
+
     var x: Number
     var y: Number
 }
 
-external interface MpQuaternion {
-    fun new(x: Float, y: Float, z: Float, w: Float)
+class MpQuaternion {
+    constructor(x: Number, y: Number, z: Number, w: Number) {
+        this.x = x
+        this.y = y
+        this.z = z
+        this.w = w
+    }
 
-    var x: Float
-    var y: Float
-    var z: Float
-    var w: Float
+    var x: Number
+    var y: Number
+    var z: Number
+    var w: Number
 }
 
 
@@ -2894,37 +2958,72 @@ external interface MpQuaternion {
 //
 //
 
-external interface MpRgb {
-    var r: Int
-    var g: Int
-    var b: Int
+class MpRgb {
+    constructor(r: Int? = 0, g: Int? = 0, b: Int? = 0) {
+        this.r = r
+        this.g = g
+        this.b = b
+    }
+
+    var r: Int?
+    var g: Int?
+    var b: Int?
 }
 
-external interface MpRgba {
-    var r: Int
-    var g: Int
-    var b: Int
-    var a: Int
+class MpRgba {
+
+    constructor(r: Int? = 0, g: Int? = 0, b: Int? = 0, a: Int? = 0) {
+        this.r = r
+        this.g = g
+        this.b = b
+        this.a = a
+    }
+
+    var r: Int?
+    var g: Int?
+    var b: Int?
+    var a: Int?
 }
 
-external interface MpVehicleColors {
-    var colorPrimary: Number
-    var colorSecondary: Number
+class MpVehicleColors {
+    constructor(primary: Int? = 0, secondary: Int? = 0) {
+        colorPrimary = primary
+        colorSecondary = secondary
+    }
+
+    var colorPrimary: Int?
+    var colorSecondary: Int?
 }
 
-external interface MpVehicleExtraColors {
-    var pearlescentColor: Number
-    var wheelColor: Number
+class MpVehicleExtraColors {
+    constructor(pearlescent: Int? = 0, wheel: Int? = 0) {
+        pearlescentColor = pearlescent
+        wheelColor = wheel
+    }
+
+    var pearlescentColor: Int?
+    var wheelColor: Int?
 }
 
-external interface MpVehicleLightState {
-    var lightsOn: Boolean
-    var highbeamsOn: Boolean
+class MpVehicleLightState {
+    constructor(lights: Boolean? = false, highbeams: Boolean? = false) {
+        lightsOn = lights
+        highbeamsOn = highbeams
+    }
+
+    var lightsOn: Boolean?
+    var highbeamsOn: Boolean?
 }
-external interface MpVehicleModColor {
-    var paintType: Number
-    var color: Number
-    var p2: Number
+class MpVehicleModColor {
+    constructor(paintType: Int? = 0, color: Int? = 0, p2: Int? = 0) {
+        this.paintType = paintType
+        this.color = color
+        this.p2 = p2
+    }
+
+    var paintType: Int?
+    var color: Int?
+    var p2: Int?
 }
 
 external enum class ForceType {
@@ -2953,7 +3052,7 @@ external interface MpWeaponComponentDataPointer {
     var descLabel: String
 }
 
-external interface MpWeaponDataPointer {
+external interface  MpWeaponDataPointer {
     var emptyCheck: Number
     var padding1: Number
     var weaponHash: Number
@@ -2974,7 +3073,7 @@ external interface MpWeaponDataPointer {
     var upperCaseNameLabel: String
 }
 
-external interface MpShopPedOutfit {
+external interface  MpShopPedOutfit {
     var mask: Number
     var torso: Number
     var pants: Number
@@ -3003,16 +3102,28 @@ external interface MpShopPedOutfit {
     var earpiceTexture: Number
 }
 
-external interface MpMinimumMaximumVector {
+class MpMinimumMaximumVector {
+    constructor(min: MpVector3, max: MpVector3) {
+        minimum = min
+        maximum = max
+    }
+
     var minimum: MpVector3
     var maximum: MpVector3
 }
 
-external interface MpFontData {
+class MpFontData {
+    constructor(font: Int? = 0, color: MpRgba? = MpRgba(), scale: MpVector2? = MpVector2(1,1), outline: Boolean? = false) {
+        this.font = font
+        this.color = color
+        this.scale = scale
+        this.outline = outline
+    }
+
     var font: Int?
-    var color: MpRgba
-    var scale: MpVector2
-    var outline: Boolean? get() = definedExternally; set(value) = definedExternally
+    var color: MpRgba?
+    var scale: MpVector2?
+    var outline: Boolean?
 }
 
 external interface MpDoorState {
@@ -3020,34 +3131,34 @@ external interface MpDoorState {
     var heading: Boolean
 }
 
-external interface MpDirections {
+external interface  MpDirections {
     var p4: Number
     var vehicle: Number
     var p6: Number
 }
 
-external interface MpVehicleNode {
+external interface  MpVehicleNode {
     var outPosition: MpVector3
     var outHeading: Number
 }
 
-external interface MpVehicleNode2 {
+external interface  MpVehicleNode2 {
     var outPosition: MpVector3
     var heading: Number
     var unknown1: Any
 }
 
-external interface MpStreetName {
+external interface  MpStreetName {
     var streetName: Number
     var crossingRoad: Number
 }
 
-external interface MpVehicleNodeProperties {
+external interface  MpVehicleNodeProperties {
     var density: Number
     var flags: Number
 }
 
-external interface MpDateTime {
+external interface  MpDateTime {
     var year: Number
     var month: Number
     var day: Number
@@ -3057,7 +3168,7 @@ external interface MpDateTime {
     var milisecond: Number
 }
 
-external interface MpDateTime2 {
+external interface  MpDateTime2 {
     var year: Number
     var month: Number
     var day: Number
@@ -3066,7 +3177,7 @@ external interface MpDateTime2 {
     var second: Number
 }
 
-external interface MpHudColor {
+interface MpHudColor {
     var hudIndex: Number
     var r: Number
     var g: Number
@@ -3074,12 +3185,12 @@ external interface MpHudColor {
     var a: Number
 }
 
-external interface MpRandomVehicleModelInMemory {
+external interface  MpRandomVehicleModelInMemory {
     var modelHash: Number
     var p2: Number
 }
 
-external interface MpWeaponHudStats {
+external interface  MpWeaponHudStats {
     var hudDamage: Number
     var hudSpeed: Number
     var hudCapacity: Number
@@ -3087,14 +3198,14 @@ external interface MpWeaponHudStats {
     var hudRange: Number
 }
 
-external interface MpRaycastResultHit {
+external interface  MpRaycastResultHit {
     var hit: Boolean
     var endCoords: MpVector3
     var surfaceNormal: MpVector3
     var entityHit: MpEntity
 }
 
-external interface MpRaycastResultHitMaterial {
+external interface  MpRaycastResultHitMaterial {
     var hit: Boolean
     var endCoords: MpVector3
     var surfaceNormal: MpVector3
