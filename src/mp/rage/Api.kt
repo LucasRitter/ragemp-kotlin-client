@@ -2818,7 +2818,7 @@ class MpTextLabelOptions {
 }
 
 external interface MpMarkerPool : MpPool<MpMarker> {
-    fun new(type: Int, position: MpVector3, scale: Number, options: MpMarkerOptions? = definedExternally)
+    fun new(type: Int, position: MpVector3, scale: Number, options: MpMarkerOptions? = definedExternally): MpMarker
 }
 
 class  MpMarkerOptions {
@@ -2838,7 +2838,7 @@ class  MpMarkerOptions {
 }
 
 external interface MpObjectPool : MpPool<MpObject> {
-    fun new(model: Int, position: MpVector3, options: MpObjectOptions? = definedExternally)
+    fun new(model: Int, position: MpVector3, options: MpObjectOptions? = definedExternally): MpObject
 }
 
 class MpObjectOptions {
@@ -2854,7 +2854,7 @@ class MpObjectOptions {
 }
 
 external interface MpPedPool : MpPool<MpPed> {
-    fun new(model: Int, position: MpVector3, heading: Number, streamInEventHandler: (ped: MpPed) -> Unit?  = definedExternally, dimension: Int? = definedExternally)
+    fun new(model: Int, position: MpVector3, heading: Number, streamInEventHandler: (ped: MpPed) -> Unit?  = definedExternally, dimension: Int? = definedExternally): MpPed
 }
 
 external interface MpPickupPool : MpPool<MpPickup> {
@@ -2867,11 +2867,11 @@ external interface MpPlayerPool : MpPool<MpPlayer> {
 }
 
 external interface MpVehiclePool : MpPool<MpVehicle> {
-    fun new(model: Int, position: MpVector3, options: MpVehicleOptions? = definedExternally)
+    fun new(model: Int, position: MpVector3, options: MpVehicleOptions? = definedExternally): MpVehicle
 }
 
 class MpVehicleOptions {
-    constructor(alpha: Int? = 255, color: Array<MpRgb>? = Array(2, { MpRgb(); MpRgb() }), dimension: Int? = 0, engine: Boolean? = true, heading: Number? = 0, locked: Boolean? = false, numberPlate: String? = "vanadium") {
+    constructor(alpha: Int? = 255, color: Array<Array<Int>>? = arrayOf(arrayOf<Int>(10, 10, 10), arrayOf<Int>(10, 10, 10)), dimension: Int? = 0, engine: Boolean? = true, heading: Number? = 0, locked: Boolean? = false, numberPlate: String? = "Kotlin") {
         this.alpha = alpha
         this.color = color
         this.dimension = dimension
@@ -2882,7 +2882,7 @@ class MpVehicleOptions {
     }
 
     var alpha: Int?
-    var color: Array<MpRgb>?
+    var color: Array<Array<Int>>?
     var dimension: Int?
     var engine: Boolean?
     var heading: Number?
