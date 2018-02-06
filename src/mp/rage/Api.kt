@@ -372,7 +372,7 @@ external interface MpPlayer : MpEntity {
     var weapon: Int
 
     val action: String
-    val aimTarget: Boolean
+    val aimTarget: MpEntity?
     val ip: String
     val isAiming: Boolean
     val isClimbing: Boolean
@@ -381,8 +381,8 @@ external interface MpPlayer : MpEntity {
     val isJumping: Boolean
     val isLeavingVehicle: Boolean
     val ping: Int
-    val seat: Boolean
-    val vehicle: Boolean
+    val seat: Int?
+    val vehicle: MpVehicle?
 
     // Todo: Change all Numbers
 
