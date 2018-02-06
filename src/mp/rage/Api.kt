@@ -1822,8 +1822,8 @@ external interface MpGameGraphics {
     fun drawSpotLight(posX: Number, posY: Number, posZ: Number, dirX: Number, dirY: Number, dirZ: Number, colorR: Number, colorG: Number, colorB: Number, distance: Number, brightness: Number, roundness: Number, radius: Number, falloff: Number)
     fun drawSpotLightWithShadow(posX: Number, posY: Number, posZ: Number, dirX: Number, dirY: Number, dirZ: Number, colorR: Number, colorG: Number, colorB: Number, distance: Number, brightness: Number, roundness: Number, radius: Number, falloff: Number, shadow: Number)
     fun drawSprite(textureDict: String, textureName: String, screenX: Number, screenY: Number, scaleX: Number, scaleY: Number, heading: Number, colorR: Number, colorG: Number, colorB: Number, alpha: Number)
-    fun drawText(text: String, position: dynamic /* JsTuple<Number, Number, Number> */, data: MpFontData? = definedExternally /* null */)
-    fun drawText(text: String, position: dynamic /* JsTuple<Number, Number> */, data: MpFontData? = definedExternally /* null */)
+    fun drawText(text: String, position: MpVector3, data: MpFontData? = definedExternally)
+    fun drawText(text: String, position: MpVector2, data: MpFontData? = definedExternally)
     fun drawTvChannel(xPos: Number, yPos: Number, xScale: Number, yScale: Number, rotation: Number, r: Number, g: Number, b: Number, alpha: Number)
     fun enableAlienBloodVfx(toggle: Boolean)
     fun enableClownBloodVfx(toggle: Boolean)
@@ -1836,7 +1836,7 @@ external interface MpGameGraphics {
     fun getScreenEffectIsActive(effectName: String): Number
     fun getScreenResolution(x: Number, y: Number): MpVector2
     fun getTextureResolution(textureDict: String, textureName: String): MpVector3
-    fun hasHudScaleformLoaded(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Boolean
+    fun hasHudScaleformLoaded(componentIndex: Int): Boolean
     fun hasNamedScaleformMovieLoaded(scaleformName: String): Boolean
     fun hasScaleformContainerMovieLoadedIntoParent(scaleformHandle: Number): Boolean
     fun hasScaleformMovieLoaded(scaleformHandle: Number): Boolean
@@ -1848,7 +1848,7 @@ external interface MpGameGraphics {
     fun moveVehicleDecals(p0: Any, p1: Any)
     fun notify(text: String)
     fun pushScaleformMovieFunction(scaleform: Number, functionName: String): Boolean
-    fun pushScaleformMovieFunctionFromHudComponent(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */, functionName: String): Boolean
+    fun pushScaleformMovieFunctionFromHudComponent(componentIndex: Int , functionName: String): Boolean
     fun pushScaleformMovieFunctionN(functionName: String): Boolean
     fun pushScaleformMovieFunctionParameterBool(value: Boolean)
     fun pushScaleformMovieFunctionParameterNumber(value: Number)
@@ -1861,7 +1861,7 @@ external interface MpGameGraphics {
     fun removeDecalsInRange(x: Number, y: Number, z: Number, range: Number)
     fun removeParticleFx(ptfxHandle: Number, p1: Boolean)
     fun removeParticleFxInRange(X: Number, Y: Number, Z: Number, radius: Number)
-    fun requestHudScaleform(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
+    fun requestHudScaleform(componentIndex: Int)
     fun requestScaleformMovie(scaleformName: String): Number
     fun requestScaleformMovie3(scaleformName: String): Number
     fun requestScaleformMovieInstance(scaleformName: String): Number
@@ -2463,7 +2463,7 @@ external interface MpGameUi {
     fun flashWantedDisplay(p0: Boolean): Any
     fun getBlipInfoIdCoord(p0: Number): MpVector3
     fun getHudColour(hudIndex: Number, r: Number, g: Number, b: Number, a: Number): MpHudColor
-    fun getHudComponentPosition(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Number
+    fun getHudComponentPosition(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Number
     fun getLabelText(labelName: String): String
     fun getLengthOfLiteralString(string: String): Number
     fun getLengthOfStringWithThisTextLabel(gxt: String): Number
@@ -2477,15 +2477,15 @@ external interface MpGameUi {
     fun hasAdditionalTextLoaded(slot: Number): Boolean
     fun hasHeadDisplayLoaded(headDisplayId: Number): Boolean
     fun hasThisAdditionalTextLoaded(gxt: String, slot: Number): Boolean
-    fun hideHudComponentThisFrame(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
-    fun hideScriptedHudComponentThisFrame(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
+    fun hideHudComponentThisFrame(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
+    fun hideScriptedHudComponentThisFrame(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
     fun hideSpecialAbilityLockonOperation(p0: Any, p1: Boolean)
-    fun isHudComponentActive(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Boolean
+    fun isHudComponentActive(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Boolean
     fun isMinimapAreaRevealed(x: Number, y: Number, radius: Number): Boolean
     fun isNamedRendertargetLinked(hash: Number): Boolean
     fun isNamedRendertargetRegistered(p0: String): Boolean
     fun isPauseMenuActive(): Boolean
-    fun isScriptedHudComponentActive(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Boolean
+    fun isScriptedHudComponentActive(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */): Boolean
     fun isStreamingAdditionalText(p0: Number): Boolean
     fun keyHudColour(p0: Boolean, p1: Any)
     fun linkNamedRendertarget(hash: Number)
@@ -2498,7 +2498,7 @@ external interface MpGameUi {
     fun removeNotification(notifactionId: Number)
     fun requestAdditionalText(gxt: String, slot: Number)
     fun requestAdditionalText2(gxt: String, slot: Number)
-    fun resetHudComponentValues(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
+    fun resetHudComponentValues(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
     fun respondingAsTemp(p0: Number)
     fun restartFrontendMenu(menuHash: Number, p1: Number)
     fun setAbilityBarValue(p0: Number, p1: Number)
@@ -2509,8 +2509,8 @@ external interface MpGameUi {
     fun setHeadDisplayFlag(headDisplayId: Number, sprite: Number, toggle: Boolean)
     fun setHeadDisplayString(headDisplayId: Number, string: String)
     fun setHeadDisplayWanted(headDisplayId: Number, wantedlvl: Number)
-    fun setHudColour(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */, r: Number, g: Number, b: Number, a: Number)
-    fun setHudComponentPosition(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */, x: Number, y: Number)
+    fun setHudColour(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */, r: Number, g: Number, b: Number, a: Number)
+    fun setHudComponentPosition(componentIndex: Int /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */, x: Number, y: Number)
     fun setLoadingPromptTextEntry(string: String)
     fun setMinimapAttitudeIndicatorLevel(altitude: Number, p1: Boolean)
     fun setMinimapBlockWaypoint(toggle: Boolean)
@@ -2555,7 +2555,7 @@ external interface MpGameUi {
     fun setWarningMessage2(entryHeader: String, entryLine1: String, instructionalKey: Number, entryLine2: String, p4: Boolean, p5: Any, p6: Any, p7: Any, background: Boolean)
     fun setWarningMessage3(entryHeader: String, entryLine1: String, instructionalKey: Any, entryLine2: String, p4: Any, p5: Any, p6: Any, p7: Any, p8: Any, p9: Boolean)
     fun setWidescreenFormat(p0: Any)
-    fun showHudComponentThisFrame(componentIndex: dynamic /* Number /* 0 */ | Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ | Number /* 9 */ | Number /* 10 */ | Number /* 11 */ | Number /* 12 */ | Number /* 13 */ | Number /* 14 */ | Number /* 15 */ | Number /* 16 */ | Number /* 17 */ | Number /* 18 */ | Number /* 19 */ | Number /* 20 */ | Number */)
+    fun showHudComponentThisFrame(componentIndex: Int)
     fun showLoadingPrompt(busySpinnerType: Number)
     fun showWeaponWheel(forcedShow: Boolean)
     fun toggleStealthRadar(toggle: Boolean)
@@ -2788,11 +2788,13 @@ external interface MpColshapePool : MpPool<MpColshape> {
 }
 
 external interface MpEventPool {
-    fun add(eventName: String, callback: (args: Array<Any>) -> Unit)
-    fun addCommand(commandName: String, callback: (player: MpPlayer, fullText: String, args: Array<String>) -> Unit)
-    fun call(eventName: String, vararg args: Any)
-    fun callRemote(eventName: String, vararg args: Any)
-    fun remove(eventName: String, handler: (args: Array<Any>) -> Unit?)
+    fun add(eventName: String, callback: (args: Array<Any>?) -> Unit)
+    fun addCommand(commandName: String, callback: (player: MpPlayer, fullText: String, args: Array<String>?) -> Unit)
+    fun call(eventName: String, vararg args: Any?)
+    fun call(eventName: String)
+    fun callRemote(eventName: String, vararg args: Any?)
+    fun callRemote(eventname: String)
+    fun remove(eventName: String, handler: (args: Array<Any>?) -> Unit?)
     fun remove(eventNames: Array<String>)
 }
 
