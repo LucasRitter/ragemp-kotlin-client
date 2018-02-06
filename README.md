@@ -29,7 +29,7 @@ guide at the top of the readme.
         mp.players.local.position,
         MpVehicleOptions(
             numberPlate = "Kotlin",
-            color = Array(2, {MpRgb(220, 52, 40); MpRgb(220, 52, 40)}),
+            color = arrayOf(arrayOf(220, 52, 40), arrayOf(220, 52, 40)),
             heading = 270
         ))
     ```
