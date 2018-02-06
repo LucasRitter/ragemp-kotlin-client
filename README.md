@@ -1,3 +1,4 @@
+![RageMP + Kotlin](https://i.imgur.com/rBqAzSN.png)
 # RageMP + Kotlin + Autocomplete = ❤
 ### Installation ⚙
 
