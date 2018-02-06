@@ -1316,12 +1316,12 @@ external interface MpGame {
     var ped: MpGamePed
     var player: MpGamePlayer
     var rope: MpGameRope
-    var GameScript: MpGameScript
-    var GameStats: MpGameStats
-    var GameStreaming: MpGameStreaming
-    var GameSystem: MpGameSystem
-    var GameTime: MpGameTime
-    var GameUi: MpGameUi
+    var script: MpGameScript
+    var stats: MpGameStats
+    var streaming: MpGameStreaming
+    var system: MpGameSystem
+    var time: MpGameTime
+    var ui: MpGameUi
     var unk: MpGameUnk
     var recorderGameRecorder: MpGameRecorder
     var vehicle: MpGameVehicle
